@@ -1,4 +1,4 @@
-from affordablehousing.py import *
+from affordablehousing import *
 
 def ask_question():
     response = input("Would you like to know about affordable housing in San Francisco? (Y/N): ")
@@ -43,4 +43,3 @@ def bot():
     response = ask_question()
     if response == 'Y':
         main()
-    
