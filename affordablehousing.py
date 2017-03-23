@@ -3,6 +3,7 @@ import csv
 from csv import DictReader
 from urllib.parse import urlencode
 
+
 def fetch_affordable_data():
     url = 'https://data.sfgov.org/api/views/9rdx-httc/rows.csv?accessType=DOWNLOAD'
     resp = requests.get(url)
@@ -115,6 +116,13 @@ def check_progress():
             progress_dict[progress_label] += 1
     return progress_dict
 
+def earliest_inclusionary_project():
+    record = fetch_inclusionary_data()
+    sortedprojects = sorted(record,key=sort_foo)
+    return sortedprojects[1]
+
+def sort_foo(inclusionary_list):
+    return datetime.strptime(inclusionary_list['Planning Approval Date'], '%m/%d/%Y')
 
 def main():
     affordable_inclusionary_housing_dict = both_affordable_inclusionary()
@@ -127,12 +135,31 @@ def main():
     else:
         print('There are no recorded housing projects in San Francisco that meet the inclusionary housing requirements.')
 
-
     progress = check_progress()
+
     print('Here is an update of the progress and count of all the housing developents that include the inclusionary housing requirement:')
     for p in progress.keys():
         status = p
         count = str(progress[p])
         print(status + ' : ' + count)
+
+    earliest_project = earliest_inclusionary_project()
+
+    rest_of_story = """
+
+    The earliest project dates back to {date}, when its planning was approved. It was completed on {date2} and is located on {address}.
+
+    """
+
+    story = rest_of_story.format(
+    date = earliest_project['Planning Approval Date'],
+    date2 = earliest_project['Completion Date'],
+    address = earliest_project['Location']
+    )
+
+    print(story)
+
+
+
 
 main()
