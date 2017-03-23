@@ -31,7 +31,6 @@ def make_map_url(markers):
     return my_url
 
 def get_latitude(pair):
-    #argument is a string
     lat = ''
     coordinate_int = pair[1:-1]
     comma_index = coordinate_int.index(',')
@@ -80,7 +79,6 @@ def inclusionary_list():
         else:
             pass
     return inclusionary_list
-
 
 def both_affordable_inclusionary():
     match = []
