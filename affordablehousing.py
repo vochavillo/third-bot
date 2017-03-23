@@ -103,6 +103,19 @@ def both_affordable_inclusionary():
             match_dict[float(a)] = num1
     return match_dict
 
+def check_progress():
+    count = 0
+    progress_dict = {}
+    record = fetch_inclusionary_data()
+    for r in record:
+        progress_label = r['Project Status']
+        if progress_label not in progress_dict.keys():
+            progress_dict.setdefault(progress_label, 1)
+        else:
+            progress_dict[progress_label] += 1
+    return progress_dict
+
+
 def main():
     affordable_inclusionary_housing_dict = both_affordable_inclusionary()
     aff_inc_count = len(affordable_inclusionary_housing_dict.items())
@@ -113,5 +126,13 @@ def main():
         print('There are ' + count + ' housing projects that are both affordable and that include the inclusionary requirements. Here is a map showing where these affordable-accessible projects are located in San Francisco.')
     else:
         print('There are no recorded housing projects in San Francisco that meet the inclusionary housing requirements.')
+
+
+    progress = check_progress()
+    print('Here is an update of the progress and count of all the housing developents that include the inclusionary housing requirement:')
+    for p in progress.keys():
+        status = p
+        count = str(progress[p])
+        print(status + ' : ' + count)
 
 main()
