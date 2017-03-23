@@ -1,4 +1,12 @@
 # third-bot
+
+How to this:
+  import bot
+  response = bot.ask_question
+  if response == 'Y':
+    bot.bot()
+
+
 The cost of housing in the Bay Area is increasing. With the calls for more affordable housing, I wanted to look at whether the affordable housing units in San Francisco fell under the city's inclusionary housing program that began in 1992. The inclusionary housing program warranted that any housing development of 10 or more housing units would have to set aside a portion of all total units to be affordable. The plan was to find any matches between the affordable housing dataset and the inclusionary housing dataset. Across the information provided, I thought to match by location, assuming that, if there was a match, the latitude and longitude of a housing development in one dataset would reflect the same coordinates in the other dataset. Interestingly enough, there were no matches. And I wouldn't attribute this to the city's failure to build more affordable housing or all housing developers opting to pay a fee to avoid setting aside any affordable housing units in their projects, at least without further investigation. There are several explanations to the no-match results. One may be that the latitude and longitude coordinates were not of equal precision and uniformly entered across the two datasets. Another may be that the either dataset did not capture any of the housing units that were built prior to a certain date--I tried to find out the earliest housing development in both datasets, to understand how far the data went, but one dataset provided no 'date' information.
 
 Had there been a match, I would a Google map would have been provided with the pins visualizing where these housing units would be located in the city. A function that would produce this Google map URL is included in the program but ended up not being called because there were no matches between the affordable housing dataset and the inclusionary housing dataset.

@@ -158,8 +158,3 @@ def main():
     )
 
     print(story)
-
-
-
-
-main()
